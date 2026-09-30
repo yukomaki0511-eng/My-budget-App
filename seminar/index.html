@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI初心者セミナー｜自分に合ったAI活用</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--nv:#1a1a2e;--bl:#5b7cfa;--gd:#f5a623;--rd:#e94560;--gr:#27ae60;--lb:#f0f3ff;--lr:#fff5f7;--lg:#f0fff4;--lo:#fffbf0;--gy:#6b7280}
+body{font-family:'Noto Sans JP','Yu Gothic','Meiryo','Hiragino Sans',sans-serif;background:#d8d8e0;padding:20px 0}
+.slides-wrapper{display:flex;flex-direction:column;align-items:center;gap:16px}
+.slide{width:297mm;height:167mm;background:#fff;box-shadow:0 4px 28px rgba(0,0,0,.22);position:relative;overflow:hidden;display:flex;flex-direction:column;flex-shrink:0}
+
+/* header / footer */
+.sh-bar{background:linear-gradient(135deg,#12121f,#1a1a2e);padding:18px 32px;min-height:70px;display:flex;align-items:center;gap:14px;border-bottom:3px solid var(--bl);flex-shrink:0}
+.sh-title{font-size:26px;font-weight:800;color:#fff;flex:1;line-height:1.3}
+.sh-part{font-size:15px;font-weight:800;letter-spacing:.04em;padding:5px 12px;border-radius:6px;background:var(--bl);color:#fff;white-space:nowrap}
+.sh-part.o{background:var(--gd);color:var(--nv)}.sh-part.g{background:var(--gr)}.sh-part.r{background:var(--rd)}.sh-part.n{background:rgba(255,255,255,.14);color:#d6dcf5;border:1px solid rgba(255,255,255,.25)}
+.hero .sh-part.n{background:rgba(10,10,25,.45)}
+.hero-part{position:absolute;top:22px;left:32px;z-index:2}
+.sh-num{font-size:16px;color:#d6dcf5}
+.sf{background:var(--nv);padding:10px 26px;display:flex;justify-content:space-between;flex-shrink:0}
+.sf span{font-size:13px;color:#d6d9e4}
+
+/* body */
+.sb{flex:1;padding:34px 48px;display:flex;flex-direction:column;gap:22px;overflow:hidden}
+.sb.center-col{justify-content:center}
+
+/* text */
+.message{font-size:46px;line-height:1.6;font-weight:800;color:var(--nv)}
+.message p{margin:0}.message .last{color:#3759d7}
+.message.multiline{font-size:40px;line-height:1.6}
+.message em{font-style:normal;color:var(--rd)}
+.hint{font-size:24px;line-height:1.7;color:#555;font-weight:500}
+.hint small{font-size:17px;color:#777}
+.hint strong{color:var(--rd)}
+.head-line{font-size:34px;font-weight:800;color:var(--nv);line-height:1.5}
+.head-line em{font-style:normal;color:var(--rd)}
+
+/* dark */
+.dark{background:linear-gradient(150deg,#0d0d1f,#1a1a2e 65%,#15152a)}
+.dark .sb{text-align:center;align-items:center}
+.dark .message{color:#fff}.dark .message .last{color:var(--gd)}
+.dark .hint{color:#c6cad8}
+
+/* hero（写真なし版） */
+.hero{background:radial-gradient(circle at 78% 22%,rgba(91,124,250,.55),transparent 55%),radial-gradient(circle at 12% 90%,rgba(245,166,35,.35),transparent 50%),linear-gradient(150deg,#0d0d1f,#1a1a2e 60%,#22224a);justify-content:flex-end}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,25,0) 0%,rgba(10,10,25,.15) 50%,rgba(10,10,25,.55) 100%)}
+.hero-body{position:relative;padding:40px 60px 30px;display:flex;flex-direction:column;gap:16px;flex:1;justify-content:flex-end}
+.hero-tag{display:inline-block;align-self:flex-start;background:var(--bl);color:#fff;font-size:16px;font-weight:800;padding:6px 20px;border-radius:24px;letter-spacing:.08em}
+.hero-main{font-size:48px;font-weight:900;color:#fff;line-height:1.5;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.hero-main em{font-style:normal;color:var(--gd)}
+.hero-main small{display:block;font-size:30px;font-weight:800;color:rgba(255,255,255,.85)}
+.hero-sub{font-size:24px;color:rgba(255,255,255,.85);line-height:1.7;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.hero-sub .byline{display:inline-block;margin-top:6px;font-size:26px;font-weight:700;color:#fff}
+.hero .sf{position:relative}
+
+/* cards */
+.cards{display:grid;gap:18px;width:100%}
+.cards.c2{grid-template-columns:1fr 1fr}.cards.c3{grid-template-columns:1fr 1fr 1fr}
+.card{border-radius:14px;padding:22px 24px;background:var(--lb);border:2px solid rgba(91,124,250,.25);display:flex;flex-direction:column;justify-content:center;gap:6px;min-height:120px}
+.card.o{background:var(--lo);border-color:rgba(245,166,35,.35)}.card.g{background:var(--lg);border-color:rgba(39,174,96,.3)}.card.r{background:var(--lr);border-color:rgba(233,69,96,.3)}.card.gray{background:#f4f4f6;border-color:#c9ccd8;border-style:dashed}
+.card-lbl{font-size:20px;font-weight:900;color:var(--bl);letter-spacing:.06em}
+.card.o .card-lbl{color:#c47d00}.card.g .card-lbl{color:#1e8a4c}.card.r .card-lbl{color:var(--rd)}.card.gray .card-lbl{color:var(--gy)}
+.card-ttl{font-size:28px;font-weight:800;color:var(--nv);line-height:1.45}
+.card-desc{font-size:22px;font-weight:700;color:#3759d7;line-height:1.5}
+.card.r .card-desc{color:var(--rd)}.card.g .card-desc{color:#1e8a4c}.card.o .card-desc{color:#c47d00}.card.gray .card-desc{color:var(--gy)}
+
+/* flow / work */
+.flow{display:flex;align-items:stretch;gap:12px;width:100%}
+.flow-card{flex:1;border-radius:14px;padding:18px 14px;background:var(--lb);border:2px solid rgba(91,124,250,.2);text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:110px}
+.flow-card.o{background:var(--lo);border-color:rgba(245,166,35,.3)}.flow-card.g{background:var(--lg);border-color:rgba(39,174,96,.3)}.flow-card.r{background:var(--lr);border-color:rgba(233,69,96,.3)}
+.flow-card.now{background:var(--nv);border-color:var(--nv)}.flow-card.now .ttl{color:#fff}.flow-card.now .no{color:var(--gd)}
+.flow-card .no{font-size:15px;font-weight:800;letter-spacing:.1em;color:var(--bl);margin-bottom:6px}
+.flow-card .ttl{font-size:26px;font-weight:900;color:var(--nv);line-height:1.4}.flow-card .desc{font-size:20px;color:#555;margin-top:6px;line-height:1.5}
+.flow-arrow{display:flex;align-items:center;font-size:28px;color:var(--bl);font-weight:900}
+.timer{display:inline-block;background:var(--rd);color:#fff;font-size:22px;font-weight:800;padding:6px 20px;border-radius:24px;letter-spacing:.08em;vertical-align:middle}
+.work-head{display:flex;align-items:center;gap:22px}
+.work-main{font-size:36px;font-weight:800;color:var(--nv);line-height:1.5}
+.fill-line{font-size:44px;font-weight:800;color:var(--nv);line-height:1.7}
+.fill{display:inline-block;min-width:260px;border-bottom:4px solid var(--gd);color:#c47d00;padding:0 8px}
+
+/* prompt */
+.prompt-card{background:#12121f;color:#e9efff;border-radius:16px;padding:26px 34px;display:flex;flex-direction:column;gap:10px;border-left:6px solid var(--bl)}
+.pl{display:flex;gap:18px;align-items:flex-start;font-size:26px;line-height:1.6;font-weight:600}
+.pl-mark{flex-shrink:0;width:14px;height:14px;border-radius:50%;margin-top:14px}
+.pl-mark.m1{background:var(--gd)}.pl-mark.m2{background:var(--bl)}.pl-mark.m3{background:var(--gr)}.pl-mark.m4{background:#c6cad8}
+
+/* before / after */
+.ba{border-radius:16px;padding:22px 30px;display:flex;flex-direction:column;gap:8px}
+.ba.before{background:var(--lr);border:3px solid rgba(233,69,96,.4)}.ba.after{background:var(--lg);border:3px solid rgba(39,174,96,.4)}
+.ba-tag{font-size:22px;font-weight:900;letter-spacing:.1em}.ba.before .ba-tag{color:var(--rd)}.ba.after .ba-tag{color:#1e8a4c}
+.ba-text{font-size:28px;font-weight:800;color:var(--nv);line-height:1.6}
+.ba-res{font-size:22px;font-weight:700;color:#555}
+.ba.before .ba-res b{color:var(--rd)}.ba.after .ba-res b{color:#1e8a4c}
+
+/* × ○ */
+.xo{display:grid;grid-template-columns:1fr 1fr;gap:22px;width:100%}
+.xo-col{border-radius:16px;padding:26px 30px;display:flex;gap:20px;align-items:flex-start}
+.xo-col.bad{background:var(--lo);border:3px solid rgba(245,166,35,.45)}.xo-col.good{background:var(--lg);border:3px solid rgba(39,174,96,.35)}
+.xo-mark{font-size:34px;font-weight:900;line-height:1.2;flex-shrink:0}.xo-col.bad .xo-mark{color:#c47d00}.xo-col.good .xo-mark{color:#1e8a4c}
+.xo ul{list-style:none;display:flex;flex-direction:column;gap:12px;font-size:32px;font-weight:800;color:var(--nv);line-height:1.4}
+
+/* toolbar / presenting / notes */
+.toolbar{position:sticky;top:0;z-index:10;background:#1a1a2e;color:#fff;padding:10px;display:flex;gap:14px;align-items:center;justify-content:center;font-size:15px;flex-wrap:wrap}
+button{font:inherit;padding:6px 14px;cursor:pointer}
+body.presenting{padding:0;background:#111;overflow:hidden}
+.presenting .slide{display:none;margin:0;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(var(--scale,1));transform-origin:center}
+.presenting .slide.active{display:flex}
+.presenting .toolbar{position:fixed;bottom:0;top:auto;width:100%;opacity:.15}.presenting .toolbar:hover{opacity:1}.shot .toolbar{display:none}
+.speaker-notes{display:none}
+body.show-notes:not(.presenting) .speaker-notes{display:block;width:297mm;background:#fffbe6;border:1px solid #e8d98a;border-radius:8px;padding:12px 18px;font-size:15px;line-height:1.7;color:#444;margin-top:-8px}
+.presenting.show-notes .speaker-notes{display:block;position:fixed;left:0;right:0;bottom:44px;background:rgba(255,251,230,.96);padding:12px 24px;font-size:16px;line-height:1.6;color:#333;z-index:9}
+dialog{margin:auto;width:min(960px,92vw);max-height:88vh;padding:28px;border:0;border-radius:10px;overflow:auto}
+dialog h2{font-size:22px;margin:8px 0 12px}dialog h3{font-size:17px;margin:16px 0 6px;color:#3759d7}
+dialog textarea{width:100%;height:120px;font-size:15px;line-height:1.6;padding:10px;font-family:inherit}
+
+@media print{
+  .toolbar,dialog,.speaker-notes{display:none!important}
+  body{padding:0!important;background:#fff}
+  .slides-wrapper{gap:0!important;display:block}
+  .slide{display:flex!important;position:relative!important;transform:none!important;margin:0;box-shadow:none;break-inside:avoid;break-after:page;page-break-after:always;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  .slide:last-child{break-after:auto;page-break-after:auto}
+  @page{size:297mm 167mm;margin:0}
+}
+
+/* 個別調整 */
+#slide-1 .hero-main{font-size:52px}
+#slide-3 .message{font-size:44px}
+#slide-5 .card{min-height:230px;justify-content:flex-start;padding-top:26px}#slide-5 .card-lbl{font-size:28px}#slide-5 .card-ttl{font-size:26px}
+#slide-6 .flow-card{min-height:170px}#slide-6 .flow-card .ttl{font-size:28px}#slide-6 .hint{text-align:center}
+#slide-7 .card{min-height:220px}#slide-7 .card-ttl{font-size:32px}
+#slide-8 .flow-card{min-height:150px}#slide-8 .flow-card .ttl{font-size:30px}
+#slide-11 .card{min-height:200px}#slide-11 .card-lbl{font-size:26px}
+#slide-13 .flow-card{min-height:190px}#slide-13 .flow-card .ttl{font-size:26px}
+#slide-14 .sb{gap:14px;padding:26px 48px}
+#slide-15 .message,#slide-16 .message{font-size:54px}
+#slide-17 .card{min-height:170px;text-align:center}#slide-17 .card-ttl{font-size:40px}
+#slide-18 .sb{gap:16px;padding:26px 48px}
+#slide-20 .flow-card{min-height:160px}#slide-20 .flow-card .ttl{font-size:27px}
+#slide-22 .card{min-height:190px}
+#slide-23 .hero-main{font-size:50px}
+</style></head>
+<body><nav class="toolbar"><button id="mode">発表モード</button><button id="prev">前へ</button><span id="counter">1 / 23</span><button id="next">次へ</button><button id="notes">講師ノート</button><button id="show-prompts">入力例</button><span>← →で移動／Nでノート／Escで一覧</span></nav>
+<main class="slides-wrapper">
+
+<!-- ===== はじめに（0〜10分） ===== -->
+<section class="slide hero" id="slide-1" aria-label="表紙"><div class="hero-shade"></div><div class="hero-body">
+<span class="hero-tag">AI初心者向けセミナー</span>
+<div class="hero-main"><small>AI初心者でもできる</small>「仕事や日常をラクにする、<br><em>自分に合ったAI活用</em>」</div>
+<div class="hero-sub"><span class="byline">Mome・ひめ</span></div>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>【0〜5分 オープニング】あいさつ。今日は2時間、途中で10分休憩あり。ChatGPTを一度も使ったことがない方も大丈夫、という前提の会だと最初に伝えて安心してもらう。「AIに詳しくなる」講座ではなく、「自分の場合はどう使えるか」を見つける入口の講座。</aside></section>
+
+<section class="slide" id="slide-2" aria-label="講師紹介"><header class="sh-bar"><span class="sh-part n">はじめに</span><span class="sh-title">今日のメンバー</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="cards c3"><div class="card"><div class="card-lbl">講師</div><div class="card-ttl">Mome</div></div><div class="card o"><div class="card-lbl">講師</div><div class="card-ttl">ひめ</div></div><div class="card g"><div class="card-lbl">操作サポート</div><div class="card-ttl">（名前）</div></div></div>
+<p class="hint">分からないことは、<strong>いつでも手を挙げて</strong>ください。</p>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>講師2名＋サポート1名の3名体制。自己紹介は短く（一人30秒程度）。Momeの「最初は検索のように使っていた」話は第3章（No.13）で詳しく話すので、ここでは触れる程度。操作で困ったら手を挙げればスタッフが回る、と伝える。※サポートの名前は差し替え。</aside></section>
+
+<section class="slide" id="slide-3" aria-label="相手の悩み"><header class="sh-bar"><span class="sh-part n">はじめに</span><span class="sh-title">こんなこと、ありませんか？</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="message multiline"><p>仕事や日常を少しラクにしたい。</p><p>AIも気になっている。</p><p class="last"><em>でも、何ができるのか、自分が何に使えばいいのか分からない。</em></p></div>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>【5〜10分 現在地確認】1行ずつ読み、「当てはまる方？」とうなずいてもらう。今日来ている方の多くがこの状態だと思う、それで大丈夫、と伝える。今日はここからスタートする。</aside></section>
+
+<section class="slide" id="slide-4" aria-label="アンケート"><header class="sh-bar"><span class="sh-part n">はじめに</span><span class="sh-title">ChatGPT、使ったことありますか？</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="cards c3"><div class="card r"><div class="card-lbl">A</div><div class="card-ttl">使ったことがない</div></div><div class="card o"><div class="card-lbl">B</div><div class="card-ttl">少しだけある</div></div><div class="card g"><div class="card-lbl">C</div><div class="card-ttl">ときどき使っている</div></div></div>
+<p class="hint">使ってみたい場面も、聞かせてください。</p>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>挙手で確認。Aの人数で、次の準備（No.7）の組分けの目安にする。使ってみたい場面を2〜3人に聞く（例：仕事の文章、料理、調べもの など）。出た場面は後半のワークや共有で拾う。</aside></section>
+
+<section class="slide" id="slide-5" aria-label="今日のゴール"><header class="sh-bar"><span class="sh-part n">はじめに</span><span class="sh-title">今日のゴール</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="cards c3"><div class="card"><div class="card-lbl">知る</div><div class="card-ttl">明日からAIを使うために、まず何をすればいいか分かっている</div></div><div class="card o"><div class="card-lbl">感じる</div><div class="card-ttl">「AIって難しくない。楽しそう。自分の業務にも使えそう」</div></div><div class="card g"><div class="card-lbl">行動する</div><div class="card-ttl">明日、仕事や日常の中でAIを1回使ってみる</div></div></div>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>ゴールは「AIに詳しくなる」ではない。「自分でも使えそう」と思い、最初の1回を踏み出せる状態になること。一番大事なのは右の「行動する」。2時間後に、明日やることが1つ決まっていればOK。</aside></section>
+
+<section class="slide" id="slide-6" aria-label="今日の流れ"><header class="sh-bar"><span class="sh-part n">はじめに</span><span class="sh-title">今日の流れ</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="flow"><div class="flow-card"><div class="no">準備</div><div class="ttl">ChatGPTを<br>使えるようにする</div></div><div class="flow-arrow">→</div><div class="flow-card o"><div class="no">前半</div><div class="ttl">AIを<br>知る・触る</div></div><div class="flow-arrow">→</div><div class="flow-card g"><div class="no">後半</div><div class="ttl">自分に合った<br>使い方を見つける</div></div></div>
+<p class="hint">途中で<strong>10分休憩</strong>があります。</p>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>前半は「よく分からない」→「とりあえず使えた」→「こんなことができるんだ」。後半は「自分の場合は？」→「自分のことを伝える」→「自分向けの提案が返ってきた」→「明日もやってみよう」。使うのはChatGPTだけ。いろいろなAIは紹介しない。</aside></section>
+
+<!-- ===== 準備（10〜25分） ===== -->
+<section class="slide" id="slide-7" aria-label="組分け"><header class="sh-bar"><span class="sh-part">準備</span><span class="sh-title">2つのグループに分かれます</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="cards c2"><div class="card r"><div class="card-lbl">はじめての方</div><div class="card-ttl">講師1名＋サポート1名</div><div class="card-desc">ChatGPTの準備から一緒に</div></div><div class="card g"><div class="card-lbl">使ったことがある方</div><div class="card-ttl">講師1名</div><div class="card-desc">ミニワーク</div></div></div>
+<p class="hint">準備ができたら、<strong>全員合流</strong>します。</p>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>【10〜25分 準備】No.4でA（使ったことがない）の方ははじめての方グループへ。どちらの講師がどちらを担当するかは事前に決めておく。経験者のミニワーク（案）：「最近ちょっと面倒だと思っていることを1つ、ChatGPTに相談してみる」。合流したら全員で同じ講義・ワークに進む。</aside></section>
+
+<section class="slide" id="slide-8" aria-label="ChatGPTの準備"><header class="sh-bar"><span class="sh-part">準備</span><span class="sh-title">ChatGPTの準備</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="work-head"><span class="timer">15分</span></div>
+<div class="flow"><div class="flow-card"><div class="no">STEP 1</div><div class="ttl">インストール</div></div><div class="flow-arrow">→</div><div class="flow-card o"><div class="no">STEP 2</div><div class="ttl">アカウント作成</div></div><div class="flow-arrow">→</div><div class="flow-card g"><div class="no">STEP 3</div><div class="ttl">ログイン・<br>画面の確認</div></div></div>
+<p class="hint">分からなくなったら、<strong>手を挙げて</strong>ください。</p>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>はじめての方グループ向け。PCはブラウザ、スマホはアプリ。アカウント作成・ログインまで講師＋サポートで一人ずつ確認。最後に基本画面（入力欄・送信ボタン・新しいチャット）を指さしで確認。20名だと時間がかかるので、止まっている人を優先して回る。</aside></section>
+
+<!-- ===== 前半：知る・触る（25〜55分） ===== -->
+<section class="slide" id="slide-9" aria-label="ワーク① まず1回使ってみる"><header class="sh-bar"><span class="sh-part o">前半　AIを知る・触る</span><span class="sh-title">ワーク①：まず1回使ってみる</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="work-head"><span class="timer">10分</span></div>
+<div class="prompt-card"><div class="pl"><span class="pl-mark m1"></span><span>冷蔵庫に、にんじん・じゃがいも・豚肉があります。<br>今日の夕飯の献立を3つ考えてください。</span></div></div>
+<p class="hint">入力して、送信する。<strong>返ってきた答えを読む。</strong>それだけでOK。</p>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>【25〜35分 全員合流】難しく考えず、入力→送信→回答の基本を全員で体験する。入力例はそのままでも、材料を変えてもよい。答えが返ってきたら「使えた」ことを一緒に確認する。早く終わった人は「もっと簡単なのにして」と続けて送ってみてもらう。※入力例は案。差し替え可。</aside></section>
+
+<section class="slide" id="slide-10" aria-label="理論① 検索だけではない"><header class="sh-bar"><span class="sh-part o">前半　AIを知る・触る</span><span class="sh-title">AIは検索するだけのものではない</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="xo"><div class="xo-col bad"><div class="xo-mark">検索</div><ul><li>調べる</li></ul></div><div class="xo-col good"><div class="xo-mark">AI</div><ul><li>相談する</li><li>整理する</li><li>文章をつくる</li></ul></div></div>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>【35〜45分 何ができる？】さっきの献立も「調べた」のではなく「相談した」。検索は答えが載っているページを探すもの。AIは、こちらの話を聞いて、一緒に考えてくれる相手。調べものにも使えるが、それだけではない。</aside></section>
+
+<section class="slide" id="slide-11" aria-label="事例 仕事・日常での使い方"><header class="sh-bar"><span class="sh-part o">前半　AIを知る・触る</span><span class="sh-title">仕事・日常での使い方</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="cards c3"><div class="card"><div class="card-lbl">相談する</div><div class="card-ttl">冷蔵庫の残りもので献立</div></div><div class="card o"><div class="card-lbl">整理する</div><div class="card-ttl">やることや予定をまとめる</div></div><div class="card g"><div class="card-lbl">文章をつくる</div><div class="card-ttl">お知らせ文・メールの下書き</div></div></div>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>No.10の3つに対応する例。整理する：頭の中のやることを箇条書きで送ると、優先順位をつけて並べてくれる。文章をつくる：町内会や職場のお知らせ、断りのメールなど、言いにくい文章の下書き。No.4で出た「使ってみたい場面」があればここで結びつける。※例は案。差し替え可。</aside></section>
+
+<section class="slide" id="slide-12" aria-label="理論② 情報が少なければ答えも一般的"><header class="sh-bar"><span class="sh-part o">前半　AIを知る・触る</span><span class="sh-title">答えが変わるポイント</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="message"><p>情報が少なければ、</p><p class="last"><em>AIの答えも一般的になりやすい。</em></p></div>
+<p class="hint">同じ質問でも、<strong>伝える量</strong>で答えが変わる。</p>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>【45〜55分 体験＋実演】ここが後半への橋渡し。人に相談するときも、相手のことを知らなければ一般論しか言えない。AIも同じ。「どんな人が、どんな状況で困っているか」が分かると、答えがその人向けになる。</aside></section>
+
+<section class="slide" id="slide-13" aria-label="Momeの体験"><header class="sh-bar"><span class="sh-part o">前半　AIを知る・触る</span><span class="sh-title">私の体験</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="flow"><div class="flow-card r"><div class="no">最初</div><div class="ttl">AIを検索のように<br>使っていた</div></div><div class="flow-arrow">→</div><div class="flow-card o"><div class="no">やってみた</div><div class="ttl">「自分はどんな人<br>なのか」を<br>AIに伝えた</div></div><div class="flow-arrow">→</div><div class="flow-card g"><div class="no">気づいた</div><div class="ttl">検索以外にも<br>自分に合った<br>使い方がある</div></div></div>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>Momeが話す。「最初からAIに詳しかったわけではない。自分も最初は分からなかった」という立場で。検索のように使っていたころの具体的な場面 → 自分のことを伝えてみたきっかけ → どんな答えが返ってきて、何に使えるようになったか。※具体的なエピソードはMome本人の言葉で。</aside></section>
+
+<section class="slide" id="slide-14" aria-label="実演"><header class="sh-bar"><span class="sh-part o">前半　AIを知る・触る</span><span class="sh-title">実演：自分の情報「なし」と「あり」</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="ba before"><span class="ba-tag">なし</span><span class="ba-text">仕事をラクにする方法を教えてください。</span><span class="ba-res">→ <b>誰にでも当てはまる答え</b></span></div>
+<div class="ba after"><span class="ba-tag">あり</span><span class="ba-text">私は〇〇の仕事をしています。〇〇に時間がかかっています。AI初心者です。AIでラクにできそうなことを教えてください。</span><span class="ba-res">→ <b>自分向けの答え</b></span></div>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>スクリーンに講師の画面を映し、実際に2回入力して見せる。「あり」の〇〇はMomeの実際の仕事・困りごとで埋める。2つの答えを並べて「どこが違うか」を参加者に聞く。ここで前半終了、休憩へ。</aside></section>
+
+<!-- ===== 休憩（55〜65分） ===== -->
+<section class="slide dark" id="slide-15" aria-label="休憩"><header class="sh-bar"><span class="sh-part n">休憩</span><span class="sh-title">休憩</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="message"><p class="last">休憩　10分</p></div>
+<p class="hint">後半は、<strong>自分のこと</strong>をAIに伝えてみます。</p>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>【55〜65分】再開時刻を口頭と板書で伝える。休憩中にログインが切れた人・準備が終わっていない人をサポートが回ってフォロー。休憩中に「自分の仕事や困りごと」を少し考えておいてもらうと後半がスムーズ。</aside></section>
+
+<!-- ===== 後半：自分に合った使い方を見つける（65〜105分） ===== -->
+<section class="slide dark" id="slide-16" aria-label="コアメッセージ"><header class="sh-bar"><span class="sh-part g">後半　自分に合った使い方を見つける</span><span class="sh-title">今日、一番伝えたいこと</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="message"><p>AIに自分のことを伝えれば、</p><p class="last">自分に合った使い方が見つかる。</p></div>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>【65〜75分 コアメッセージ】前半の実演（No.14）を振り返りながら。「なし」と「あり」で答えが変わったのは、自分のことを伝えたから。使い方は人から教わるだけでなく、自分のことを伝えれば、AIが一緒に見つけてくれる。ゆっくり、1回はっきり言い切る。</aside></section>
+
+<section class="slide" id="slide-17" aria-label="ワーク② 何を伝える？"><header class="sh-bar"><span class="sh-part g">後半　自分に合った使い方を見つける</span><span class="sh-title">ワーク②：何を伝える？</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="work-head"><span class="timer">5分</span><span class="work-main">まず、メモに書き出す</span></div>
+<div class="cards c3"><div class="card"><div class="card-ttl">仕事</div></div><div class="card o"><div class="card-ttl">日常</div></div><div class="card r"><div class="card-ttl">困りごと</div></div></div>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>【75〜80分 メインワークの説明】いきなり入力せず、まず紙に一言ずつ書く。仕事：どんな仕事をしているか（家事・地域の活動でもOK）。日常：普段どんなことに時間を使っているか。困りごと：時間がかかっていること、面倒なこと。全部埋まらなくてよい。1つでもあれば次に進める。</aside></section>
+
+<section class="slide" id="slide-18" aria-label="ワーク② 自分のことを伝えてみる"><header class="sh-bar"><span class="sh-part g">後半　自分に合った使い方を見つける</span><span class="sh-title">ワーク②：自分のことを伝えてみる</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="work-head"><span class="timer">15分</span></div>
+<div class="prompt-card"><div class="pl"><span class="pl-mark m1"></span><span>私は〇〇の仕事をしています。</span></div><div class="pl"><span class="pl-mark m2"></span><span>〇〇に時間がかかっています。</span></div><div class="pl"><span class="pl-mark m3"></span><span>AI初心者です。</span></div><div class="pl"><span class="pl-mark m4"></span><span>AIでラクにできそうなことを教えてください。</span></div></div>
+<p class="hint">自分の情報を入れると、<strong>AIの答えが自分向けになる</strong>。</p>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>【80〜95分 メインワーク】今日一番大事な時間。削らない。〇〇にNo.17で書いたメモを入れて送信。返ってきた提案の中から「これは使えそう」を1つ選んでもらう。講師2名＋サポートで会場を回り、手が止まっている人には「何に一番時間がかかっていますか？」と聞いて〇〇を一緒に埋める。操作練習ではなく、「自分向けの答えが返ってくる」実感が目的。</aside></section>
+
+<section class="slide" id="slide-19" aria-label="共有"><header class="sh-bar"><span class="sh-part g">後半　自分に合った使い方を見つける</span><span class="sh-title">共有</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="message"><p>他の人の使い方を聞いて、</p><p class="last"><em>「そんな使い方もあるんだ」</em>を増やす。</p></div>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>【95〜105分 共有・講師から補足】3〜4人に、何を伝えて、どんな提案が返ってきたかを話してもらう（回っている間に目星をつけておく）。講師は「ここを伝えたから、この答えになった」と変化のポイントを言葉にして返す。</aside></section>
+
+<!-- ===== まとめ（105〜120分） ===== -->
+<section class="slide" id="slide-20" aria-label="まとめ"><header class="sh-bar"><span class="sh-part r">まとめ</span><span class="sh-title">今日のまとめ</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="flow"><div class="flow-card"><div class="no">1</div><div class="ttl">AIは検索する<br>だけのものではない</div></div><div class="flow-arrow">→</div><div class="flow-card o"><div class="no">2</div><div class="ttl">伝える量で<br>答えが変わる</div></div><div class="flow-arrow">→</div><div class="flow-card now"><div class="no">3</div><div class="ttl">自分のことを伝える</div></div></div>
+<p class="hint" style="text-align:center">AIに自分のことを伝えれば、<strong>自分に合った使い方が見つかる</strong>。</p>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>【105〜110分 まとめ・明日の一歩】今日の階段を振り返る。「分からない」から始まって、検索だけではないと知り、伝える量で答えが変わると知り、自分のことを伝えてみた。ここまで来られたら、もう「自分にも使えそう」の状態。</aside></section>
+
+<section class="slide" id="slide-21" aria-label="明日の一歩"><header class="sh-bar"><span class="sh-part r">まとめ</span><span class="sh-title">明日の一歩</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="message"><p>明日、仕事や日常の中で</p><p class="last">AIを<em>1回</em>使ってみる。</p></div>
+<div class="fill-line">私は明日、<span class="fill">　　　　　</span>に使う。</div>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>空欄を各自のメモに書いてもらう。ワーク②で「使えそう」と選んだ提案をそのまま書けばよい。1回でいい。大きなことでなくていい。2〜3人に読み上げてもらえると、場が締まる。</aside></section>
+
+<section class="slide" id="slide-22" aria-label="質問・今後のご相談"><header class="sh-bar"><span class="sh-part r">まとめ</span><span class="sh-title">質問・今後のご相談</span><span class="sh-num pg"></span></header><div class="sb center-col">
+<div class="cards c2"><div class="card"><div class="card-lbl">質問</div><div class="card-ttl">今日のことで、分からなかったこと</div></div><div class="card gray"><div class="card-lbl">今後のご相談</div><div class="card-ttl">（連絡先・案内方法）</div></div></div>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>【110〜120分】質問を受ける。出なければ「家に帰ってから困りそうなこと」を聞く。最後に、AIのことで困ったら相談できる先として今後の案内をする（売り込みではなく、相談先として知ってもらう）。※右のカードは連絡先・QRコード等に差し替え。</aside></section>
+
+<section class="slide hero" id="slide-23" aria-label="最後の一言"><div class="hero-part"><span class="sh-part n">まとめ</span></div><div class="hero-shade"></div><div class="hero-body">
+<div class="hero-main">AIに自分のことを伝えれば、<br><em>自分に合った使い方が見つかる。</em></div>
+<div class="hero-sub">明日、仕事や日常の中でAIを1回使ってみる。</div>
+</div><footer class="sf"><span>AI初心者でもできる「仕事や日常をラクにする、自分に合ったAI活用」</span><span class="pg"></span></footer>
+<aside class="speaker-notes" hidden>コアメッセージに戻って締める。「今日はありがとうございました。明日の1回、ぜひやってみてください」。</aside></section>
+</main>
+
+<dialog id="prompts"><button id="close-prompts">閉じる</button><h2>今日の入力例</h2>
+<p style="font-size:15px;color:#555">コピーしてChatGPTに貼り付けられます。〇〇は自分のことに書き換える。</p>
+<h3>ワーク①：まず1回使ってみる（No.9）</h3><textarea readonly>冷蔵庫に、にんじん・じゃがいも・豚肉があります。
+今日の夕飯の献立を3つ考えてください。</textarea><button class="copy">コピー</button>
+<h3>ワーク②：自分のことを伝えてみる（No.18）</h3><textarea readonly>私は〇〇の仕事をしています。
+〇〇に時間がかかっています。
+AI初心者です。
+AIでラクにできそうなことを教えてください。</textarea><button class="copy">コピー</button></dialog>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];let current=0;
+slides.forEach((s,i)=>s.querySelectorAll('.pg').forEach(el=>el.textContent=(i+1)+' / '+slides.length));
+function update(){slides.forEach((s,i)=>s.classList.toggle('active',i===current));document.getElementById('counter').textContent=(current+1)+' / '+slides.length;document.documentElement.style.setProperty('--scale',Math.min(innerWidth/1123,(innerHeight-(document.body.classList.contains('shot')?0:30))/631));}
+function move(d){current=Math.max(0,Math.min(slides.length-1,current+d));update();if(!document.body.classList.contains('presenting'))slides[current].scrollIntoView({behavior:'smooth',block:'center'});}
+document.getElementById('mode').onclick=()=>{document.body.classList.toggle('presenting');update()};
+document.getElementById('notes').onclick=()=>{document.body.classList.toggle('show-notes')};
+document.getElementById('prev').onclick=()=>move(-1);document.getElementById('next').onclick=()=>move(1);
+const dialog=document.getElementById('prompts');document.getElementById('show-prompts').onclick=()=>dialog.showModal();document.getElementById('close-prompts').onclick=()=>dialog.close();
+document.querySelectorAll('.copy').forEach(b=>b.onclick=async()=>{const t=b.previousElementSibling;t.select();try{await navigator.clipboard.writeText(t.value);b.textContent='コピーしました'}catch{document.execCommand('copy');b.textContent='コピーしました'}});
+addEventListener('keydown',e=>{if(dialog.open)return;if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();move(1)}if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();move(-1)}if(e.key==='Escape'){document.body.classList.remove('presenting');update()}if(e.key==='n'||e.key==='N'){document.body.classList.toggle('show-notes')}});
+const q=new URLSearchParams(location.search);if(location.hash.startsWith('#slide-')){current=Math.max(0,Math.min(slides.length-1,parseInt(location.hash.slice(7))-1))}if(q.has('present')){document.body.classList.add('presenting')}if(q.has('shot')){document.body.classList.add('presenting','shot')}
+addEventListener('resize',update);update();
+</script>
+</body></html>
